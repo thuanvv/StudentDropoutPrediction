@@ -17,25 +17,7 @@ Trang web được sinh ra để so sánh bốn kỹ thuật máy học— Suppe
 
 @st.cache_data
 def prepare_data_and_evaluate_models():
-    np.random.seed(42)
-    num_samples = 10000
-    data = pd.DataFrame({
-        'col1': np.random.choice(np.arange(1, 71), size=num_samples),
-    })
-    for col in ['col2', 'col6', 'col7', 'col26', 'col27', 'col30', 'col31']:
-        data[col] = np.random.choice([1, 2, 3], size=num_samples)
-    for col in ['col8', 'col9', 'col25']:
-        data[col] = np.random.choice([1, 2, 3, 4], size=num_samples)
-    for col in ['col10', 'col11']:
-        data[col] = np.random.choice([1, 2, 3, 4, 5, 6], size=num_samples)
-    for i in range(1, 33):
-        if i not in [1, 2, 6, 7, 8, 9, 10, 11, 20, 21, 22, 25, 26, 27, 30, 31, 32]:  # Excluding specified columns
-            data[f'col{i}'] = np.random.choice([1, 2], size=num_samples)
-    data['target'] = (np.sin(data['col1']) + np.cos(data['col2']) > 0).astype(int)
-
-    # Sort columns in ascending order except the 'target' column
-    sorted_columns = sorted([col for col in data.columns if col != 'target'], key=lambda x: int(x.replace('col', ''))) + ['target']
-    data = data[sorted_columns]
+    data = pd.read_csv('tweaked_dataset1.csv')
     X = data.drop('target', axis=1)
     y = data['target']
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
