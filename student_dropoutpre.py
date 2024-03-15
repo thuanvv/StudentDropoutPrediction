@@ -221,7 +221,7 @@ if st.button('Predict Dropout Risk'):
     prediction = best_model.predict(scaled_inputs)
     
     # Display the prediction result
-    st.write(f"Dựa vào dữ liệu được cung cấp ở trên, thì mức độ rủi ro mà sinh viên này bỏ học là: {'**Cao**' if prediction[0] == 1 else '**Thấp**'}")
+    st.write(f"Dựa vào dữ liệu được cung cấp ở trên, thì mức độ rủi ro mà sinh viên này bỏ học là: {'**Thấp**' if prediction[0] == 1 else '**Cao**'}")
     
 st.header('Feedback')
 st.write('Bạn thấy kỹ thuật máy học nào là triển vọng nhất cho việc dự đoán tỷ lệ sinh viên bỏ học? Chia sẻ suy nghĩ hoặc kinh nghiệm của bạn.')
